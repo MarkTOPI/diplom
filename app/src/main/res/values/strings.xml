@@ -1,3 +1,26 @@
 <resources>
     <string name="app_name">Health Tracking</string>
+    <string name="textAppName">Health Tracking</string>
+    <string name="btnLogin">Login</string>
+    <string name="btnSignup"><u>Signup</u></string>
+    <string name="btnSignupReg">Signup</string>
+    <string name="btnBack">Back</string>
+    <string name="btnRecord">Record</string>
+    <string name="textUserName">Health Tracking</string>
+    <string name="textSteps">Steps</string>
+    <string name="textSleep">Sleep</string>
+    <string name="textFood">Food</string>
+    <string name="textWater">Water</string>
+    <string name="textBody">Body composition</string>
+    <string name="textHome">Home</string>
+    <string name="textProfile">Profile</string>
+    <string name="textSleepHrsText">hrs</string>
+    <string name="textSleepMinText">min</string>
+    <string name="textFoodTargetCal">cal</string>
+    <string name="textWaterGlasses">glasses</string>
+    <string name="textBodyKg">kg</string>
+    <string name="editUserName">User Name</string>
+    <string name="editLogin">Login</string>
+    <string name="editPassword">Password</string>
+    <string name="editRepeatPassword">Repeat Password</string>
 </resources>

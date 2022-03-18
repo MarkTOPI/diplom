@@ -1,7 +1,6 @@
 package com.example.healthtracking;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setTheme(R.style.Theme_AppCompat_DayNight_NoActionBar);
         setContentView(R.layout.activity_main);
-
     }
 
     public void btnWaterPlus(View view) {

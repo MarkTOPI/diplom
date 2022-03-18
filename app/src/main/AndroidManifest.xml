@@ -10,18 +10,31 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HealthTracking">
         <activity
+            android:name=".ProfilePage"
+            android:exported="false" />
+        <activity
             android:name=".SplashScreen"
-            android:theme="@style/SplashTheme"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/SplashTheme">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
+            android:name=".first_page"
+            android:exported="true" />
+        <activity
+            android:name=".LoginPage"
+            android:exported="true" />
+        <activity
+            android:name=".RegistrationPage"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
-            android:theme="@style/Theme.HealthTracking"
-            android:exported="true"></activity>
+            android:exported="true"
+            android:theme="@style/Theme.HealthTracking" />
     </application>
 
 </manifest>
