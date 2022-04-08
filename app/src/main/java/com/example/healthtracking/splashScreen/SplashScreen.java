@@ -1,9 +1,11 @@
-package com.example.healthtracking;
+package com.example.healthtracking.splashScreen;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+
+import com.example.healthtracking.firstPage.first_page;
 
 public class SplashScreen extends AppCompatActivity {
 

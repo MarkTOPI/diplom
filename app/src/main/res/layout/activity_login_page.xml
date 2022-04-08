@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".LoginPage"
+    tools:context=".login.LoginPage"
     android:background="#000"
     android:padding="20dp">
     <LinearLayout
@@ -79,8 +79,7 @@
             android:textSize="22sp"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:text="@string/btnLogin"
-            android:onClick="btnLogin"/>
+            android:text="@string/btnLogin"/>
         <Button
             android:id="@+id/btnBack"
             android:layout_width="200dp"

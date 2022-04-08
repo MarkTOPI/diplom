@@ -1,10 +1,14 @@
-package com.example.healthtracking;
+package com.example.healthtracking.registration;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import com.example.healthtracking.R;
+import com.example.healthtracking.firstPage.first_page;
+import com.example.healthtracking.login.LoginPage;
 
 public class RegistrationPage extends AppCompatActivity {
 
