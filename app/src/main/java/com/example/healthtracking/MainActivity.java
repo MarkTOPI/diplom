@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.fragmentContainerView);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
     }
-
 //    public void btnWaterPlus(View view) {
 //        TextView count = (TextView) findViewById(R.id.textWaterNow);
 //        CharSequence text = count.getText();

@@ -109,7 +109,6 @@
             android:layout_gravity="center"
             android:layout_marginBottom="15dp"
             android:background="@drawable/rectangle_button"
-            android:onClick="btnRegistration"
             android:text="@string/btnSignupReg"
             android:textAllCaps="false"
             android:textColor="@color/white"
