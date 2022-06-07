@@ -3,20 +3,17 @@ package com.example.healthtracking.network.models.Register;
 import com.google.gson.annotations.SerializedName;
 
 public class RegistrationBody {
-    @SerializedName("editUserName")
+    @SerializedName("username")
     private String editUserName;
-    @SerializedName("editLogin")
+    @SerializedName("login")
     private String editLogin;
-    @SerializedName("editPassword")
+    @SerializedName("password")
     private String editPassword;
-    @SerializedName("editRepeatPassword")
-    private String editRepeatPassword;
 
-    public RegistrationBody(String editUserName, String editLogin, String editPassword, String editRepeatPassword) {
+    public RegistrationBody(String editUserName, String editLogin, String editPassword) {
         this.editUserName = editUserName;
         this.editLogin = editLogin;
         this.editPassword = editPassword;
-        this.editRepeatPassword = editRepeatPassword;
     }
 
     public String getEditUserName() {
@@ -41,13 +38,5 @@ public class RegistrationBody {
 
     public void setEditPassword(String editPassword) {
         this.editPassword = editPassword;
-    }
-
-    public String getEditRepeatPassword() {
-        return editRepeatPassword;
-    }
-
-    public void setEditRepeatPassword(String editRepeatPassword) {
-        this.editRepeatPassword = editRepeatPassword;
     }
 }

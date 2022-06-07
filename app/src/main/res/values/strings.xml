@@ -24,6 +24,7 @@
     <string name="textFoodTargetCal">cal</string>
     <string name="textWaterGlasses">glasses</string>
     <string name="textBodyKg">kg</string>
+    <string name="textBodyCm">cm</string>
     <string name="editUserName">User Name</string>
     <string name="editLogin">Login</string>
     <string name="editPassword">Password</string>

@@ -28,13 +28,12 @@ import retrofit2.Response;
 
 public class LoginPage extends AppCompatActivity {
 
-    private SharedPreferences.Editor editor;
-    private SharedPreferences sharedPreferences;
-    private String token;
+    private SharedPreferences.Editor editorToken, editorUserName;
+    private SharedPreferences sharedPreferencesToken, sharedPreferencesUserName;
+    private String token, username;
     EditText editLogin, editPassword;
 
     ApiAuthService service = AuthHandler.getInstance().getService();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +41,14 @@ public class LoginPage extends AppCompatActivity {
         setTheme(R.style.Theme_AppCompat_DayNight_NoActionBar);
         setContentView(R.layout.activity_login_page);
 
-        editor = getSharedPreferences("token", MODE_PRIVATE).edit();
-        sharedPreferences = getSharedPreferences("token", MODE_PRIVATE);
-        token = sharedPreferences.getString("token", "");
+        editorToken = getSharedPreferences("token", MODE_PRIVATE).edit();
+        sharedPreferencesToken = getSharedPreferences("token", MODE_PRIVATE);
+        token = sharedPreferencesToken.getString("token", "");
+        editorUserName = getSharedPreferences("username", MODE_PRIVATE).edit();
+        sharedPreferencesUserName = getSharedPreferences("username", MODE_PRIVATE);
+        username = sharedPreferencesUserName.getString("username", "");
+        Log.d(TAG, "" + token);
+        Log.d(TAG, "" + username);
         if (token != "") {
             goMainPage();
         }
@@ -66,7 +70,9 @@ public class LoginPage extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                     if (response.isSuccessful()) {
-                        editor.putString("token", response.body().getToken()).apply();
+                        editorToken.putString("token", response.body().getToken()).apply();
+                        editorUserName.putString("username", response.body().getUsername()).apply();
+                        Log.d(TAG, "Мой юзер: " + response.body().getUsername());
                         Toast.makeText(getApplicationContext(), "Вы успешно вошли!", Toast.LENGTH_SHORT).show();
                         goMainPage();
                     } else if (response.code() == 400) {

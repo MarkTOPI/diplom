@@ -1,20 +1,20 @@
 package com.example.healthtracking.network.handler;
 
 import com.example.healthtracking.network.errorUtils.ErrorUtils;
-//import com.example.healthtracking.network.services.ApiProfileService;
+import com.example.healthtracking.network.services.ApiAuthService;
+import com.example.healthtracking.network.services.ApiFoodService;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ProfileHandler {
-    private static ProfileHandler mInstance;
-//    private static final String BASEURL = "http://cinema.areas.su/";
-    private static final String BASEURL = "https://mighty-island-79577.herokuapp.com";
+public class FoodHandler {
+    private static FoodHandler mInstance;
+    private static final String BASEURL = "https://api.edamam.com";
     private Retrofit retrofit;
 
-    public ProfileHandler() {
+    public FoodHandler() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
@@ -29,15 +29,15 @@ public class ProfileHandler {
         ErrorUtils.retrofit = retrofit;
     }
 
-    public static ProfileHandler getInstance() {
+    public static FoodHandler getInstance() {
         if (mInstance == null) {
-            mInstance = new ProfileHandler();
+            mInstance = new FoodHandler();
         }
 
         return mInstance;
     }
 
-//    public ApiProfileService getProfileService() {
-//        return retrofit.create(ApiProfileService.class);
-//    }
+    public ApiFoodService getService() {
+        return retrofit.create(ApiFoodService.class);
+    }
 }

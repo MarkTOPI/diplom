@@ -62,7 +62,7 @@ public class RegistrationPage extends AppCompatActivity {
                         finish();
                         Log.d(TAG, "onResponse: " + getApplicationContext());
                         Toast.makeText(getApplicationContext(), "Регистрация успешна!", Toast.LENGTH_LONG).show();
-                    } else if (response.code() == 400) {
+                    } else if (response.code() == 500) {
                         String serviceErrorMessage = ErrorUtils.parseError(response).message();
                         Toast.makeText(getApplicationContext(), serviceErrorMessage, Toast.LENGTH_LONG).show();
                     } else {
@@ -79,7 +79,7 @@ public class RegistrationPage extends AppCompatActivity {
     }
 
     private RegistrationBody getRegistrationData() {
-        return new RegistrationBody(editUserName.getText().toString(), editLogin.getText().toString(), editPassword.getText().toString(), editRepeatPassword.getText().toString());
+        return new RegistrationBody(editUserName.getText().toString(), editLogin.getText().toString(), editPassword.getText().toString());
     }
 
 

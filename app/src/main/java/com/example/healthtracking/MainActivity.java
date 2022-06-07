@@ -1,12 +1,21 @@
 package com.example.healthtracking;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -15,7 +24,12 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SensorEventListener {
+
+    private SensorManager sensorManager;
+    private TextView textSteps;
+    boolean activityRunning;
+    private String TAG = "steps";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,24 +40,38 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavView);
         NavController navController = Navigation.findNavController(this, R.id.fragmentContainerView);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
+
+        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        textSteps = findViewById(R.id.textStepsNow);
     }
-//    public void btnWaterPlus(View view) {
-//        TextView count = (TextView) findViewById(R.id.textWaterNow);
-//        CharSequence text = count.getText();
-//        int pz = Integer.valueOf(text.toString());
-//        pz++;
-//        count.setText(Integer.toString(pz));
-//    }
-//
-//    public void btnWaterMinus(View view) {
-//        TextView count = (TextView) findViewById(R.id.textWaterNow);
-//        CharSequence text = count.getText();
-//        int pz = Integer.valueOf(text.toString());
-//        if (pz <= 0) {
-//            btnMinus.setEnabled(false);
-//        } else {
-//            pz--;
-//            count.setText(Integer.toString(pz));
-//        }
-//    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        activityRunning = true;
+        Sensor countSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+        if (countSensor != null) {
+            sensorManager.registerListener(this, countSensor, SensorManager.SENSOR_DELAY_UI);
+        } else {
+            Log.d(TAG, "count steps: "+ textSteps);
+            Toast.makeText(this, "Count sensor not available!", Toast.LENGTH_LONG).show();
+            Log.d(TAG, "sensor: not sensor!");
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        if (activityRunning) {
+            textSteps.setText(String.valueOf(event.values[0]));
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int i) {
+    }
 }

@@ -14,7 +14,8 @@ public class AuthHandler {
 
     private Retrofit retrofit;
 
-    private static final String BASE_URL = "http://cinema.areas.su/auth/";
+//    private static final String BASE_URL = "http://cinema.areas.su/auth/";
+    private static final String BASE_URL = "https://mighty-island-79577.herokuapp.com";
 
     public AuthHandler () {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();

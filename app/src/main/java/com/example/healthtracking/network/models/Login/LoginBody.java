@@ -3,7 +3,7 @@ package com.example.healthtracking.network.models.Login;
 import com.google.gson.annotations.SerializedName;
 
 public class LoginBody {
-    @SerializedName("email")
+    @SerializedName("login")
     private String email;
     @SerializedName("password")
     private String password;
