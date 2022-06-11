@@ -214,9 +214,6 @@ public class MainFragment extends Fragment {
                                     Log.d(TAG, ""+ count);
                                 }
                             }
-                            if (response.code() == 422) {
-                                Toast.makeText(view.getContext(), "Синтаксическая ошибка", Toast.LENGTH_SHORT).show();
-                            }
                         }
 
                         @Override
@@ -247,9 +244,6 @@ public class MainFragment extends Fragment {
                                     pz--;
                                     count.setText(Integer.toString(pz));
                                 }
-                            }
-                            if (response.code() == 422) {
-                                Toast.makeText(view.getContext(), "Синтаксическая ошибка", Toast.LENGTH_SHORT).show();
                             }
                         }
 
@@ -287,9 +281,6 @@ public class MainFragment extends Fragment {
                                         textBodyKgNow.setText(weight);
                                         textBodyCmNow.setText(height);
                                         Toast.makeText(view.getContext(), "Вы установили свой рост: " + height + " вес: " + weight, Toast.LENGTH_LONG).show();
-                                    }
-                                    if (response.code() == 422) {
-                                        Toast.makeText(view.getContext(), "Синтаксическая ошибка", Toast.LENGTH_SHORT).show();
                                     }
                                 }
 

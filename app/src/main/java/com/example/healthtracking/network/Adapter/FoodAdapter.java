@@ -37,8 +37,8 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull FoodAdapter.ViewHolder holder, int position) {
         FoodResponse foodResponse = foodResponses.get(position);
-        holder.setLabelItem(foodResponse.getParsed().getFoodItem().getFood_label());
-        holder.setTxtFoodCal(foodResponse.getParsed().getFoodItem().getFoodNutrients().getEnergy_cal());
+//        holder.setLabelItem(foodResponse.getParsed().getFoodItem().getFood_label());
+//        holder.setTxtFoodCal(foodResponse.getParsed().getFoodItem().getFoodNutrients().getEnergy_cal());
 //        Picasso.with(context).load("http://cinema.areas.su/up/images/" + movieResponse.getPoster()).into(holder.coverCinema);
     }
 

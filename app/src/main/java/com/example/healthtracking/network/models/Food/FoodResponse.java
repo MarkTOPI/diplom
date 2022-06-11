@@ -1,9 +1,17 @@
 package com.example.healthtracking.network.models.Food;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class FoodResponse {
-    public FoodResponse(String text, FoodParsed parsed) {
+    @SerializedName("text")
+    private String text;
+    @SerializedName("parsed")
+    private List<FoodParsed> parsed;
+
+    public FoodResponse(String text, List<FoodParsed> parsed) {
         this.text = text;
         this.parsed = parsed;
     }
@@ -16,17 +24,11 @@ public class FoodResponse {
         this.text = text;
     }
 
-    public FoodParsed getParsed() {
+    public List<FoodParsed> getParsed() {
         return parsed;
     }
 
-    public void setParsed(FoodParsed parsed) {
+    public void setParsed(List<FoodParsed> parsed) {
         this.parsed = parsed;
     }
-
-    @SerializedName("text")
-    private String text;
-    @SerializedName("parsed")
-    private FoodParsed parsed;
-
 }

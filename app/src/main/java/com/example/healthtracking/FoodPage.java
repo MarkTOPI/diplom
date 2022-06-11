@@ -1,14 +1,18 @@
 package com.example.healthtracking;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.healthtracking.network.Adapter.FoodAdapter;
 import com.example.healthtracking.network.handler.FoodHandler;
@@ -28,6 +32,7 @@ public class FoodPage extends AppCompatActivity {
 
     private ArrayList<FoodResponse> foodResponses;
     private RecyclerView recyclerView;
+    private LinearLayoutManager linearLayoutManager;
     private FoodAdapter foodAdapter;
 
     private EditText editTextFoodSearch;
@@ -37,7 +42,7 @@ public class FoodPage extends AppCompatActivity {
 
     private String
             application_id = "e8542dc0",
-            application_keys = " fa537155c3d9e39b36fbca96d491bf75",
+            application_keys = "fa537155c3d9e39b36fbca96d491bf75",
             ingr = "coffee",
             nutrition_type = "cooking",
             TAG = "Response";
@@ -46,6 +51,7 @@ public class FoodPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_page);
+        linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
 
         recyclerView = findViewById(R.id.foodLvItem);
 
@@ -55,7 +61,34 @@ public class FoodPage extends AppCompatActivity {
         txtFoodCal = findViewById(R.id.txtFoodCal);
         imgFoodImage = findViewById(R.id.imgFoodImage);
 
+        editTextFoodSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (charSequence.toString().equals("")) {
+                    apiFood();
+                } else {
+                    searchItem(charSequence.toString());
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
+        });
+
         apiFood();
+    }
+
+    public void searchItem(String textToSearch) {
+//        for (FoodResponse foodResponse:foodResponses) {
+//            if (foodResponse.contains(textToSearch)) {
+//                foodResponses.remove(foodResponse);
+//            }
+//        }
     }
 
     private void apiFood() {
@@ -64,17 +97,19 @@ public class FoodPage extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<FoodResponse> call, Response<FoodResponse> response) {
                     if (response.isSuccessful()) {
-                        Log.d(TAG, "onResponse: " + response.body());
+                        Log.d(TAG, "onResponse: " + response.body().getParsed());
 //                        foodResponses = new ArrayList<>(response.body());
                         foodAdapter = new FoodAdapter(foodResponses, getApplicationContext());
                         recyclerView.setAdapter(foodAdapter);
+                        recyclerView.setLayoutManager(linearLayoutManager);
                         foodAdapter.notifyDataSetChanged();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<FoodResponse> call, Throwable t) {
-
+                    Log.d(TAG, "onResponse: " + t.getLocalizedMessage());
+                    Toast.makeText(this, "Ответ" + t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
                 }
             });
         });

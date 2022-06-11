@@ -2,11 +2,13 @@ package com.example.healthtracking.network.models.Food;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class FoodParsed {
-    public FoodParsed(FoodItem foodItem, String foodImage) {
-        this.foodItem = foodItem;
-        this.foodImage = foodImage;
-    }
+    @SerializedName("food")
+    private FoodItem foodItem;
+    @SerializedName("image")
+    private String foodImage;
 
     public FoodItem getFoodItem() {
         return foodItem;
@@ -24,8 +26,8 @@ public class FoodParsed {
         this.foodImage = foodImage;
     }
 
-    @SerializedName("food")
-    private FoodItem foodItem;
-    @SerializedName("image")
-    private String foodImage;
+    public FoodParsed(FoodItem foodItem, String foodImage) {
+        this.foodItem = foodItem;
+        this.foodImage = foodImage;
+    }
 }

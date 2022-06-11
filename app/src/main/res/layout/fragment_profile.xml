@@ -29,7 +29,7 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/imageView2"
+                        android:id="@+id/imageViewUserProfile"
                         android:layout_width="88dp"
                         android:layout_height="88dp"
                         android:src="@drawable/ellipse_2" />

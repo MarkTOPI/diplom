@@ -32,6 +32,7 @@
             android:id="@+id/editTextStepsTracking"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
             android:textStyle="bold"
             android:textSize="18sp"
             android:textColor="#FFF"

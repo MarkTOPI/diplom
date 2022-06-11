@@ -42,6 +42,7 @@
                 android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:textColor="@color/white"
+                android:inputType="textPersonName"
                 android:hint="@string/editLogin"
                 android:textColorHint="@color/white"/>
         </LinearLayout>
@@ -58,6 +59,7 @@
                 android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:textColor="@color/white"
+                android:inputType="textPassword"
                 android:hint="@string/editPassword"
                 android:textColorHint="@color/white"/>
         </LinearLayout>
