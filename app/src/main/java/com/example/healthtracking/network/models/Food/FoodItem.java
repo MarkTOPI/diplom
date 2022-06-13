@@ -5,10 +5,19 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class FoodItem {
-    @SerializedName("label")
-    private String food_label;
-    @SerializedName("nutrients")
-    private FoodNutrients foodNutrients;
+    public FoodItem(String foodImage, String food_label, FoodNutrients foodNutrients) {
+        this.foodImage = foodImage;
+        this.food_label = food_label;
+        this.foodNutrients = foodNutrients;
+    }
+
+    public String getFoodImage() {
+        return foodImage;
+    }
+
+    public void setFoodImage(String foodImage) {
+        this.foodImage = foodImage;
+    }
 
     public String getFood_label() {
         return food_label;
@@ -26,8 +35,10 @@ public class FoodItem {
         this.foodNutrients = foodNutrients;
     }
 
-    public FoodItem(String food_label, FoodNutrients foodNutrients) {
-        this.food_label = food_label;
-        this.foodNutrients = foodNutrients;
-    }
+    @SerializedName("image")
+    private String foodImage;
+    @SerializedName("label")
+    private String food_label;
+    @SerializedName("nutrients")
+    private FoodNutrients foodNutrients;
 }

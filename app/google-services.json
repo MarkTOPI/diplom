@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "56323105008",
+    "project_id": "health-tracking-7db1d",
+    "storage_bucket": "health-tracking-7db1d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:56323105008:android:3739167a709abd49542235",
+        "android_client_info": {
+          "package_name": "com.example.healthtracking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "56323105008-lper1mvv3hc11hb4uvf3413e2ecnk6en.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFDvwX2qIrG8DGL38OB7cRGl-H5ORW1sw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "56323105008-lper1mvv3hc11hb4uvf3413e2ecnk6en.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

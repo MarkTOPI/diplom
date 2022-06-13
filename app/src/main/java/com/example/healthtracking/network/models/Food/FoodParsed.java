@@ -7,8 +7,6 @@ import java.util.List;
 public class FoodParsed {
     @SerializedName("food")
     private FoodItem foodItem;
-    @SerializedName("image")
-    private String foodImage;
 
     public FoodItem getFoodItem() {
         return foodItem;
@@ -18,16 +16,7 @@ public class FoodParsed {
         this.foodItem = foodItem;
     }
 
-    public String getFoodImage() {
-        return foodImage;
-    }
-
-    public void setFoodImage(String foodImage) {
-        this.foodImage = foodImage;
-    }
-
-    public FoodParsed(FoodItem foodItem, String foodImage) {
+    public FoodParsed(FoodItem foodItem) {
         this.foodItem = foodItem;
-        this.foodImage = foodImage;
     }
 }

@@ -43,15 +43,13 @@ public class FoodPage extends AppCompatActivity {
     private String
             application_id = "e8542dc0",
             application_keys = "fa537155c3d9e39b36fbca96d491bf75",
-            ingr = "coffee",
-            nutrition_type = "cooking",
             TAG = "Response";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_page);
-        linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
+        linearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
 
         recyclerView = findViewById(R.id.foodLvItem);
 
@@ -69,9 +67,9 @@ public class FoodPage extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (charSequence.toString().equals("")) {
-                    apiFood();
+                    apiFood("");
                 } else {
-                    searchItem(charSequence.toString());
+                    apiFood(charSequence.toString());
                 }
             }
 
@@ -80,26 +78,18 @@ public class FoodPage extends AppCompatActivity {
             }
         });
 
-        apiFood();
+        apiFood("coffee");
     }
 
-    public void searchItem(String textToSearch) {
-//        for (FoodResponse foodResponse:foodResponses) {
-//            if (foodResponse.contains(textToSearch)) {
-//                foodResponses.remove(foodResponse);
-//            }
-//        }
-    }
-
-    private void apiFood() {
+    private void apiFood(String ingr) {
         AsyncTask.execute(() -> {
-            service.getFoodInfo(application_id, application_keys, ingr, nutrition_type).enqueue(new Callback<FoodResponse>() {
+            service.getFoodInfo(application_id, application_keys, ingr).enqueue(new Callback<FoodResponse>() {
                 @Override
                 public void onResponse(Call<FoodResponse> call, Response<FoodResponse> response) {
                     if (response.isSuccessful()) {
                         Log.d(TAG, "onResponse: " + response.body().getParsed());
 //                        foodResponses = new ArrayList<>(response.body());
-                        foodAdapter = new FoodAdapter(foodResponses, getApplicationContext());
+                        foodAdapter = new FoodAdapter(response.body().getParsed(), getLayoutInflater(), getApplicationContext());
                         recyclerView.setAdapter(foodAdapter);
                         recyclerView.setLayoutManager(linearLayoutManager);
                         foodAdapter.notifyDataSetChanged();
@@ -109,7 +99,7 @@ public class FoodPage extends AppCompatActivity {
                 @Override
                 public void onFailure(Call<FoodResponse> call, Throwable t) {
                     Log.d(TAG, "onResponse: " + t.getLocalizedMessage());
-                    Toast.makeText(this, "Ответ" + t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+//                    Toast.makeText(this, "Ответ" + call.toString(), Toast.LENGTH_LONG).show();
                 }
             });
         });

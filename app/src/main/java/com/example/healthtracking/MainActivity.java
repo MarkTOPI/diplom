@@ -1,24 +1,17 @@
 package com.example.healthtracking;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
-import android.Manifest;
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,10 +19,12 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
 
-    private SensorManager sensorManager;
     private TextView textSteps;
-    boolean activityRunning;
     private String TAG = "steps";
+
+    SensorManager sensorManager;
+    Sensor sensor;
+    boolean running = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,37 +36,44 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         NavController navController = Navigation.findNavController(this, R.id.fragmentContainerView);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
 
-        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         textSteps = findViewById(R.id.textStepsNow);
+
+        sensorManager = (SensorManager) getSystemService ( Context.SENSOR_SERVICE);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        activityRunning = true;
-        Sensor countSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
-        if (countSensor != null) {
-            sensorManager.registerListener(this, countSensor, SensorManager.SENSOR_DELAY_UI);
-        } else {
-            Log.d(TAG, "count steps: "+ textSteps);
-            Toast.makeText(this, "Count sensor not available!", Toast.LENGTH_LONG).show();
-            Log.d(TAG, "sensor: not sensor!");
+        running = true;
+        Log.d(TAG, "onResume: running = true");
+        Sensor countSensor = sensorManager.getDefaultSensor ( sensor.TYPE_STEP_COUNTER );
+        Log.d(TAG, "onResume: " + countSensor);
+        if(countSensor!= null){
+            Log.d(TAG, "onResume: "+ countSensor);
+            sensorManager.registerListener ( this,countSensor,SensorManager.SENSOR_DELAY_UI );
+        }else {
+            Log.d(TAG, "onResume: SENSOR NOT FOUND");
+            Toast.makeText ( this,"SENSOR NOT FOUND", Toast.LENGTH_SHORT ).show ();
         }
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        Log.d(TAG, "onPause: running = false");
+        running = false;
     }
 
     @Override
-    public void onSensorChanged(SensorEvent event) {
-        if (activityRunning) {
-            textSteps.setText(String.valueOf(event.values[0]));
+    public void onSensorChanged(SensorEvent sensorEvent) {
+        if (running){
+            Log.d(TAG, "onSensorChanged: SENSOR FOUND" + textSteps);
+            textSteps.setText ( String.valueOf (sensorEvent.values[0] ) );
         }
     }
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {
+
     }
 }
