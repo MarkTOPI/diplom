@@ -99,7 +99,7 @@ public class FoodPage extends AppCompatActivity {
                 @Override
                 public void onFailure(Call<FoodResponse> call, Throwable t) {
                     Log.d(TAG, "onResponse: " + t.getLocalizedMessage());
-//                    Toast.makeText(this, "Ответ" + call.toString(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Ответ" + call.toString(), Toast.LENGTH_LONG).show();
                 }
             });
         });

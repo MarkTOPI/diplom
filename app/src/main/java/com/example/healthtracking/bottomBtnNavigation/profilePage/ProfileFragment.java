@@ -150,21 +150,21 @@ public class ProfileFragment extends Fragment {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         pd.dismiss();
-                        Snackbar.make(getActivity().findViewById(android.R.id.content), "Загрузка фото", Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(getActivity().findViewById(android.R.id.content), "Фото загружено", Snackbar.LENGTH_LONG).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception exception) {
                         pd.dismiss();
-                        Toast.makeText(getContext(), "Ошибка загрузки", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), "Ошибка загрузки фото пользователя", Toast.LENGTH_LONG).show();
                     }
                 })
                 .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
                         double progressPercent = (100.00 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
-                        pd.setMessage("Progress: " + (int) progressPercent + "%");
+                        pd.setMessage("Прогресс: " + (int) progressPercent + "%");
                     }
                 });
 
