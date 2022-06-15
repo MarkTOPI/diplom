@@ -48,7 +48,7 @@ public class ProfileFragment extends Fragment {
     private SharedPreferences sharedPreferencesToken, sharedPreferencesUserName, sharedPreferencesPhotoUser;
     static final int GALLERY_REQUEST = 1;
     private String token, username, userPhoto, TAG = "Привет!";
-    private Button btnChangeUserName, btnChangeUserPhoto;
+    private Button btnChangeUserPhoto;
     TextView textUserName;
     public Uri imageUri;
     private FirebaseStorage storage;
@@ -78,29 +78,9 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         imageView = view.findViewById(R.id.imageViewUserProfile);
-        btnChangeUserName = view.findViewById(R.id.btnChangeUserName);
         btnChangeUserPhoto = view.findViewById(R.id.btnChangeUserPhoto);
         textUserName = view.findViewById(R.id.textUserName);
         textUserName.setText(username);
-
-        btnChangeUserName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.setContentView(R.layout.custom_user_name_input);
-                final EditText editTextUserName = (EditText) dialog.findViewById(R.id.editTextUserName);
-                dialog.setCancelable(true);
-                Button ok = dialog.findViewById(R.id.customOk);
-                ok.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        final String userName = (String) editTextUserName.getText().toString();
-                        textUserName.setText(userName);
-                        Toast.makeText(view.getContext(), "Вы установили новое имя пользователя: " + userName, Toast.LENGTH_LONG).show();
-                    }
-                });
-                dialog.show();
-            }
-        });
 
         btnChangeUserPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
