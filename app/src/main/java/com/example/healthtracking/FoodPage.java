@@ -88,7 +88,6 @@ public class FoodPage extends AppCompatActivity {
                 public void onResponse(Call<FoodResponse> call, Response<FoodResponse> response) {
                     if (response.isSuccessful()) {
                         Log.d(TAG, "onResponse: " + response.body().getParsed());
-//                        foodResponses = new ArrayList<>(response.body());
                         foodAdapter = new FoodAdapter(response.body().getParsed(), getLayoutInflater(), getApplicationContext());
                         recyclerView.setAdapter(foodAdapter);
                         recyclerView.setLayoutManager(linearLayoutManager);

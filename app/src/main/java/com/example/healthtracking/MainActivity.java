@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             sensorManager.registerListener ( this,countSensor,SensorManager.SENSOR_DELAY_UI );
         }else {
             Log.d(TAG, "onResume: SENSOR NOT FOUND");
-            Toast.makeText ( this,"SENSOR NOT FOUND", Toast.LENGTH_SHORT ).show ();
+            Toast.makeText ( this,"Подсчет шагов невозможен", Toast.LENGTH_SHORT ).show ();
         }
     }
 
